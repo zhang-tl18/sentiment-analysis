@@ -39,7 +39,7 @@ learning_rate = 0.01
 momentum = 0.5
 lr_lamb = 0.9
 max_stop_count = options.stop_count
-stop_delta = 0.001
+stop_delta = options.stop_delta
 
 torch.manual_seed(random_seed)
 
@@ -160,13 +160,12 @@ def save_record():
            'valid_losses': valid_losses,
            'valid_acc': valid_acc,
            'valid_counter': valid_counter,
-           'acc_max': acc_max,
            'epochs': n_epochs}
     torch.save(dic, model_path + network.name + '_record.csv')
 
 
 def load_record():
-    global network, optimizer, scheduler, train_losses, train_counter, valid_losses, valid_acc, valid_counter, acc_max
+    global network, optimizer, scheduler, train_losses, train_counter, valid_losses, valid_acc, valid_counter
     network.load_state_dict(torch.load(model_path + network.name + '.pth'))
     optimizer = optim.SGD(network.parameters(), lr=learning_rate, momentum=momentum, weight_decay=options.regularization)
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer, lambda epoch: lr_lamb**epoch)
@@ -176,7 +175,6 @@ def load_record():
     valid_losses = dic['valid_losses']
     valid_acc = dic['valid_acc']
     valid_counter = dic['valid_counter']
-    acc_max = dic['acc_max']
     return dic['epochs'] + 1
 
 
