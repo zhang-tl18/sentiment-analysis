@@ -49,7 +49,22 @@ RNN使用的是双层双向LSTM网络，结构如图。输入x是含有n个词�
 
 ### 3.试简要地比较实验中使用的不同参数效果，并分析原因。
 
+#### 3.1 learning rate
 
+实验中，我亲身体验到 learning rate 以及 schedule 对模型的收敛速度有很大的影响。
+
+下图分别是`lr=0.001, optimizer使用SGD, schedule使用LambdaLR` 和 `optimizer使用AdamW, schedule使用CyclicLR, max_lr, base_lr = 0.0013, 0.00026`两种方案的训练过程。
+
+可以看到第二种方案非常快的收敛，而第一种方案收敛的非常慢
+
+<center class="half">
+    <img src="./img/RNN bad.png" height="350"/>
+    <img src="./img/RNN.png" height="350"/>
+</center>
+
+#### 3.2 batch
+
+在GPU和内存允许的范围内，将batch越大，训练速度会更快。然而，使用大batch的不足是，这可能导致解决方案的泛化能力比使用小batch的差。
 
 
 
