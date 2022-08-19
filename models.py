@@ -3,11 +3,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class MLP(nn.Module):
-    def __init__(self, embedding_size=50, max_text_len=679, num_class=2, dropout_rate=0.5) -> None:
+    def __init__(self, embedding_size=50, hidden_size=16, max_text_len=679, num_class=2, dropout_rate=0.5) -> None:
         super().__init__()
         self.name = 'MLP'
-        self.fc1 = nn.Sequential(nn.Linear(embedding_size*max_text_len, 64), nn.ReLU())
-        self.fc2 = nn.Sequential(nn.Linear(64, num_class), nn.ReLU())
+        self.fc1 = nn.Sequential(nn.Linear(embedding_size*max_text_len, hidden_size), nn.ReLU())
+        self.fc2 = nn.Sequential(nn.Linear(hidden_size, num_class), nn.ReLU())
         self.droupout = nn.Dropout(dropout_rate)
 
     def forward(self, x, x_len=None):

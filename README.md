@@ -7,7 +7,5 @@ python main.py --model CNN --train --epochs 30 --patience 5
 python main.py --model RNN --train --epochs 30 --patience 5
 
 python main.py --report
-
-python best_lr.py --model MLP
 ```
 

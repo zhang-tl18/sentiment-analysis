@@ -4,7 +4,6 @@ from torch.utils.data import DataLoader
 import torch.optim as optim
 
 import argparse
-import time
 import os
 import matplotlib.pyplot as plt
 
@@ -13,7 +12,7 @@ import models
 
 # parameters
 parser = argparse.ArgumentParser(description='Sentiment Analysis') 
-parser.add_argument('--model', type=str, default='MLP', help='Model Name')
+parser.add_argument('--model', type=str, default='CNN', help='Model Name')
 parser.add_argument('--train', default=False, action='store_true', help='Train or not')
 parser.add_argument('--continue', default=False, action='store_true', help='Continue on the last training model or not', dest='continuing')
 parser.add_argument('--report', default=False, action='store_true', help='Report all models\' score')
@@ -213,11 +212,11 @@ def plot_figure():
     plt.plot(train_counter, train_losses, color='blue')
     plt.scatter(valid_counter, valid_losses, color='red')
     plt.plot(valid_counter, valid_acc, color='green')
-    plt.legend(['Train Loss', 'Valid Loss', 'Valid Accuracy'], loc='upper right')
+    plt.legend(['Train Loss', 'Valid Loss', 'Valid Accuracy'], loc='right')
     plt.xlabel('number of training examples seen')
     plt.ylabel('cross entropy loss')
-    plt.savefig(img_path + network.name + ' ' + str(time.localtime().tm_mon)+'-'+str(time.localtime().tm_mday) + ' ' + str(time.localtime().tm_hour)+'-'+str(time.localtime().tm_min)+'-'+str(time.localtime().tm_sec)+'.png')
-    plt.show()
+    plt.savefig(img_path + network.name + ' ' + str(len(os.listdir(img_path))) +'.png')
+    # plt.show()
 
 
 if __name__ == "__main__":
@@ -230,7 +229,6 @@ if __name__ == "__main__":
             start_epoch = load_record()
 
         # train
-        start = time.time()
         for epoch in range(start_epoch, n_epochs + 1):
             print("-" * 40)
             train(epoch)
@@ -239,7 +237,6 @@ if __name__ == "__main__":
                 print("\nNo improvement for {} epoches. Early stop!\n".format(max_stop_count))
                 break
         print("-" * 40)
-        print('\nFinished training! Total cost time: {}\n'.format(time.time()-start))
         report(test_loader)
 
     # report
