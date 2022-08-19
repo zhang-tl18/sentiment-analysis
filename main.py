@@ -17,7 +17,7 @@ parser.add_argument('--train', default=False, action='store_true', help='Train o
 parser.add_argument('--continue', default=False, action='store_true', help='Continue on the last training model or not', dest='continuing')
 parser.add_argument('--report', default=False, action='store_true', help='Report all models\' score')
 parser.add_argument('--epochs', type=int, default=40, help='Number of epochs')
-parser.add_argument('--patience', type=int, default=5, help='How long to wait after last time validation loss improved')
+parser.add_argument('--patience', type=int, default=7, help='How long to wait after last time validation loss improved')
 options = parser.parse_args()
 print(options)
 
@@ -35,7 +35,7 @@ batch_size_test = 512
 random_seed = 2023
 record_size = 1024
 max_stop_count = options.patience
-step_size = n_epochs // 8
+step_size = 4
 max_lr, base_lr = {'MLP': (0.0002, 0.00004), 'CNN': (0.008, 0.0016), 'RNN': (0.0013, 0.00026)}[options.model]
 learning_rate = (max_lr + base_lr) / 2
 
