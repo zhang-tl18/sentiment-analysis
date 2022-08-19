@@ -77,9 +77,9 @@ MLP, CNN, RNN模型的训练过程如下。其中横轴表示训练的样本数�
 同时，我们可以在图中看到，`MLP`和`RNN`的`valid loss`都要高于`train loss`，说明模型有过拟合问题。`CNN`则没有。我已经在训练过程中加入了early stopping, dropout和正则化方法，但还是有一定的过拟合现象。这个问题有待改进。
 
 <center class="half">
-    <img src="./img/MLP.png" height="400"/>
-    <img src="./img/CNN.png" height="400"/>
-    <img src="./img/RNN.png" height="400"/>
+    <img src="./img/MLP.png" height="300"/>
+    <img src="./img/CNN.png" height="300"/>
+    <img src="./img/RNN.png" height="300"/>
 </center>
 
 
@@ -91,5 +91,5 @@ MLP, CNN, RNN模型的训练过程如下。其中横轴表示训练的样本数�
 3） 过拟合是深度学习常见的问题， 有什么方法可以方式训练过程陷入过拟合。
 4） 试分析 CNN， RNN，全连接神经网络（ MLP）三者的优缺点。  
 
-### 6.心得体会  
+
 
