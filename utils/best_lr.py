@@ -27,9 +27,10 @@ batch_size_trian = 256
 batch_size_valid = 512
 random_seed = 2023
 learning_rate = 0.001
+step_size = 10
+# 修改以下两值，找到第一个收敛的点和收敛后第一个下降的点
 max_lr = 0.0016      # 0.008
 base_lr = 0.001     # 0.0016
-step_size = 10
 
 
 torch.manual_seed(random_seed)
