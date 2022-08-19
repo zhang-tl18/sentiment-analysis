@@ -27,7 +27,7 @@ class My_Dataset(Dataset):
                 vecs.append([0]*self.embedding_size)
         data = torch.cat([torch.FloatTensor(np.array(vecs)), torch.zeros(self.max_text_len-len(vecs), self.embedding_size)])
         label = torch.tensor(self.data[index][1])
-        return data, label
+        return data, label, len(vecs)
     
     def __len__(self):
         return len(self.data)
