@@ -213,6 +213,7 @@ def plot_figure():
     plt.scatter(valid_counter, valid_losses, color='red')
     plt.plot(valid_counter, valid_acc, color='green')
     plt.legend(['Train Loss', 'Valid Loss', 'Valid Accuracy'], loc='right')
+    plt.title(network.name)
     plt.xlabel('number of training examples seen')
     plt.ylabel('cross entropy loss')
     plt.savefig(img_path + network.name + ' ' + str(len(os.listdir(img_path))) +'.png')
